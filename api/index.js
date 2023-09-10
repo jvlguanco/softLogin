@@ -1,5 +1,5 @@
 import express from 'express';
-import cookieParser from "cookie-parser"
+import cors from "cors";
 import authRoute from "./routes/auth.js";
 import {connect} from './config/db.js';
 
@@ -8,7 +8,7 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cookieParser());
+app.use(cors());
 app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
