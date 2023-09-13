@@ -74,10 +74,12 @@ export const login = async (req, res, next) => {
             const otp = Math.floor(100000+Math.random()*900000);
             const existingEmail = await UserOTP.findOne({email: user.email});
             const validPassword = await bcrypt.compare(req.body.password, user.password);
-            console.log(existingEmail);
+            
 
             if(!validPassword)
                 return next(createError("Incorrect Password", 400));
+
+            const { password, ...otherDetails } = user._doc;
 
             if(existingEmail){
                 const updateData = await UserOTP.findByIdAndUpdate({_id: existingEmail._id}, {
@@ -100,7 +102,7 @@ export const login = async (req, res, next) => {
                     }
                     else{
                         console.log("Email sent:", info.response);
-                        res.status(200).json({message: "Email Sent!"});
+                        res.status(200).json({details: { ...otherDetails }});
                     }
                 });
             } else {
@@ -121,7 +123,7 @@ export const login = async (req, res, next) => {
                     if(error)
                         res.status(400).json({message: "Email not sent!!"});
                     else
-                        res.status(200).json({message: "Email Sent!"});
+                        res.status(200).json({details: { ...otherDetails }});
                 });
             }
         } else
