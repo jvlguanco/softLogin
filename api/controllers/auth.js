@@ -1,5 +1,5 @@
 // Packages
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import validator from 'validator';
@@ -93,7 +93,7 @@ export const login = async (req, res, next) => {
                     text: `OTP: ${otp}`
                 }
                 
-                transporter.sendMail(mailOptions, (error, info, next) => {
+                transporter.sendMail(mailOptions, (error, info) => {
                     if(error){
                         console.error("Email not sent:", error);
                         res.status(400).json({ message: "Email not sent!!" });
