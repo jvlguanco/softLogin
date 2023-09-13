@@ -27,6 +27,7 @@ const Login = () => {
     try {
         const res = await axios.post("/auth/login", credentials);
         dispatch({type: 'LOGIN_SUCCESS', payload: res.data.details});
+        navigate('/otp');
     }catch(err){
         dispatch({type: 'LOGIN_FAIL', payload: err.response.data});
     }
@@ -37,9 +38,18 @@ const Login = () => {
   return (
     <div className="login">
       <div className="lContainer">
-        <input type="text" placeholder="username/email" id="username" onChange={handleChange} className='input'/>
-        <input type="text" placeholder="password" id="password" onChange={handleChange} className='input'/>
+        <h1>Login</h1>
+        <div>
+          <input type="text" placeholder="username/email" id="username" onChange={handleChange} className='input'/>
+        </div>
+        <div>
+          <input type="password" placeholder="password" id="password" onChange={handleChange} className='input'/>
+        </div>
         <button onClick={handleClick} className="lButton">Login</button>
+        <div>
+          <button onClick={()=>{navigate('/register')}} className="lButton">Register</button>
+          <button onClick={()=>{navigate('/')}} className="lButton">Home</button>
+        </div>
         {error && <span>{error.message}</span>}
       </div>
     </div>

@@ -102,7 +102,7 @@ export const login = async (req, res, next) => {
                     }
                     else{
                         console.log("Email sent:", info.response);
-                        res.status(200).json({details: { ...otherDetails }});
+                        res.status(200).json({details: { ...otherDetails, otp }});
                     }
                 });
             } else {
@@ -123,7 +123,7 @@ export const login = async (req, res, next) => {
                     if(error)
                         res.status(400).json({message: "Email not sent!!"});
                     else
-                        res.status(200).json({details: { ...otherDetails }});
+                        res.status(200).json({details: { ...otherDetails, otp }});
                 });
             }
         } else
