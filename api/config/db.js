@@ -14,7 +14,7 @@ export const connect = async () =>{
     }
 };
 
-// Verifications
+// Verification if connected to MongoDB
 mongoose.connection.on("disconnected", ()=>{
     console.log("Disconnected");
 });
