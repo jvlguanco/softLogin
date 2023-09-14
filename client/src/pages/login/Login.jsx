@@ -44,10 +44,8 @@ const Login = () => {
           <input type="password" placeholder="password" id="password" onChange={handleChange} className='input'/>
         </div>
         <button onClick={handleClick} className="lButton">Login</button>
-        <div>
-          <button onClick={()=>{navigate('/register')}} className="lButton">Register</button>
-          <button onClick={()=>{navigate('/')}} className="lButton">Home</button>
-        </div>
+        <button onClick={()=>{navigate('/register')}} className="lButton">Register</button>
+        <button onClick={()=>{navigate('/')}} className="lButton">Home</button>
         {error && <span>{error.message}</span>}
       </div>
     </div>

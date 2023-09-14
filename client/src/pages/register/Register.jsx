@@ -29,12 +29,14 @@ const Register = () => {
                 {userInputs.map((input) =>(
                     <div className="rInput" key={input.id}>
                         <label>{input.label}</label>
-                        <input onChange={handleChange} id={input.id} type={input.type} placeholder={input.placeholder} />
+                        <input onChange={handleChange} id={input.id} type={input.type} placeholder={input.placeholder} className='inputs'/>
                     </div>
                 ))}
-                <button onClick={handleClick} className="rButton">Register</button>
-                <button onClick={()=>{navigate('/login')}} className="rButton">Login</button>
-                <button onClick={()=>{navigate('/')}} className="rButton">Home</button>
+                <div className="buttons">
+                    <button onClick={handleClick} className="rButton">Register</button>
+                    <button onClick={()=>{navigate('/login')}} className="rButton">Login</button>
+                    <button onClick={()=>{navigate('/')}} className="rButton">Home</button>
+                </div>
             </div>
         </div>
     )

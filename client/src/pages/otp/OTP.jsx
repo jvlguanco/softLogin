@@ -1,3 +1,4 @@
+import './otp.css'
 import { AuthContext } from '../../components/context/AuthContext'
 import { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
@@ -21,7 +22,7 @@ const OTP = () => {
             dispatch({type: 'LOGIN_SUCCESS', payload: user});
             navigate('/');
         } else {
-            setError('Wrong OTP. Please try again.');
+            setError('Wrong OTP! Please try again.');
         }
     };
 
@@ -29,15 +30,16 @@ const OTP = () => {
         <div className="otp">
             {user ? (
                 <div className="otpContainer">
+                    <h1>Input your OTP</h1>
                     <input type="text" placeholder="OTP" id="otp" onChange={handleChange} className='input'/>
                     <button onClick={handleClick} className="otpButton">Verify</button>
+                    {error && <span>{error}</span>}
                 </div>
             ) : (
                 <div>
                     <h1>Go Back!</h1>
                 </div>
             )}
-            {error && <span>{error}</span>}
         </div>
     )
 }

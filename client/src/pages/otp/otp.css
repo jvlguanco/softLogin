@@ -1,0 +1,29 @@
+.otp{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.otpContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input{
+    height: 10px;
+    padding: 10px;
+}
+
+.otpButton{
+    border: none;
+    padding: 10px 20px;
+    background-color: #FF731D;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}

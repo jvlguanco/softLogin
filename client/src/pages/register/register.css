@@ -1,0 +1,50 @@
+.register {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.register h1{
+    text-align: center;
+}
+
+.rContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rInput{
+    height: 10px;
+    padding: 20px;
+    display: grid;
+}
+
+.rInput > label{
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.inputs{
+    height: 10px;
+    padding: 10px;
+}
+
+.buttons{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rButton {
+    border: none;
+    padding: 10px 20px;
+    background-color: #FF731D;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
