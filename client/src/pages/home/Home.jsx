@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../components/context/AuthContext'
 
 const Home = () => {
-    const { isVerified } = useContext(AuthContext);
+    const { isVerified, dispatch } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        localStorage.removeItem('user');
-        window.location.reload()
-        navigate('/');
+        dispatch({type: 'LOGOUT'});
     }
 
     return (
