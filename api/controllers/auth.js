@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import validator from 'validator';
+import jwt from 'jsonwebtoken';
 
 // Model & JS Imports
 import User from '../models/Users.js';
@@ -79,6 +80,7 @@ export const login = async (req, res, next) => {
             if(!validPassword)
                 return next(createError("Incorrect Password", 400));
 
+            const token = jwt.sign({id: user._id}, process.env.JWT);
             const { password, ...otherDetails } = user._doc;
 
             if(existingEmail){
@@ -102,7 +104,9 @@ export const login = async (req, res, next) => {
                     }
                     else{
                         console.log("Email sent:", info.response);
-                        res.status(200).json({details: { ...otherDetails, otp }});
+                        res.cookie("access_token", token, {
+                            httpOnly: true,
+                        }).status(200).json({details: {...otherDetails, otp}});
                     }
                 });
             } else {
@@ -123,7 +127,9 @@ export const login = async (req, res, next) => {
                     if(error)
                         res.status(400).json({message: "Email not sent!!"});
                     else
-                        res.status(200).json({details: { ...otherDetails, otp }});
+                        res.cookie("access_token", token, {
+                            httpOnly: true,
+                        }).status(200).json({details: {...otherDetails, otp}});
                 });
             }
         } else

@@ -1,3 +1,4 @@
+// User OTP Model for DB
 import mongoose from "mongoose";
 const {Schema} = mongoose;
 

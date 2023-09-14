@@ -1,20 +1,21 @@
+// Imports
 import express from 'express';
 import cors from "cors";
+import cookieParser from 'cookie-parser';
 import authRoute from "./routes/auth.js";
 import {connect} from './config/db.js';
 
+// Initializations
 const port = 3000;
 const app = express();
 
 // Middlewares
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 app.use("/api/auth", authRoute);
 
-app.get("/", (req, res) => {
-    res.send("This is the Index");
-});
-
+// Error Handling
 app.use((err, req, res, next) => {
     const errorStatus = err.statusCode || 500;
     const errorMessage = err.message || "Something went wrong";
@@ -26,6 +27,7 @@ app.use((err, req, res, next) => {
     });
 });
 
+// Server
 app.listen(port, ()=>{
     connect();
     console.log(`The app is running on port ${port}`)

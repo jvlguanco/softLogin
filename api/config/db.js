@@ -1,8 +1,10 @@
+// Imports
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 
 dotenv.config();
 
+// Connect to MongoDB
 export const connect = async () =>{
     try {
         await mongoose.connect(process.env.MONGO);
@@ -12,6 +14,7 @@ export const connect = async () =>{
     }
 };
 
+// Verifications
 mongoose.connection.on("disconnected", ()=>{
     console.log("Disconnected");
 });

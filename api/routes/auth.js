@@ -1,3 +1,4 @@
+// Imports
 import express from "express";
 import {
     register,
@@ -6,9 +7,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.send("This is the Index");
-});
+// Routes
 router.post("/register", register);
 router.post("/login", login);
 
