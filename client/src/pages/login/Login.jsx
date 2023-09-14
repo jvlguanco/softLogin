@@ -10,7 +10,7 @@ const Login = () => {
     password: undefined,
   });
 
-  const { user, loading , error, dispatch} = useContext(AuthContext);
+  const { error, dispatch} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -26,14 +26,12 @@ const Login = () => {
     dispatch({type: 'LOGIN_START'});
     try {
         const res = await axios.post("/auth/login", credentials);
-        dispatch({type: 'LOGIN_SUCCESS', payload: res.data.details});
+        dispatch({type: 'LOGIN_VERIFICATION', payload: res.data.details});
         navigate('/otp');
     }catch(err){
         dispatch({type: 'LOGIN_FAIL', payload: err.response.data});
     }
   };
-
-  console.log(user)
 
   return (
     <div className="login">

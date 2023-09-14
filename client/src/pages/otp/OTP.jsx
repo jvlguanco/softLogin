@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 
 const OTP = () => {
-    const { user } = useContext(AuthContext);
+    const { user, dispatch } = useContext(AuthContext);
     const [otpInput, setOtpInput] = useState('');
     const [error, setError] = useState('');
 
@@ -17,10 +17,8 @@ const OTP = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        console.log('handleClick triggered');
-        console.log(otpInput)
-        console.log(user.otp)
         if (otpInput == user.otp) {
+            dispatch({type: 'LOGIN_SUCCESS', payload: user});
             navigate('/');
         } else {
             setError('Wrong OTP. Please try again.');
@@ -29,10 +27,14 @@ const OTP = () => {
 
     return (
         <div className="otp">
-            {user && (
+            {user ? (
                 <div className="otpContainer">
                     <input type="text" placeholder="OTP" id="otp" onChange={handleChange} className='input'/>
                     <button onClick={handleClick} className="otpButton">Verify</button>
+                </div>
+            ) : (
+                <div>
+                    <h1>Go Back!</h1>
                 </div>
             )}
             {error && <span>{error}</span>}
